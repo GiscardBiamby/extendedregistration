@@ -2,9 +2,10 @@ Name: Extended Registration
 AntiForgery: enabled
 Author: Santiago Burbano
 Website: http://orchardproject.net
-Version: 1.0
+Version: 1.0.4
 OrchardVersion: 1.0
 Description: Description for the module
+Dependencies: Contrib.Profile, Orchard.jQuery
 Features:
     itWORKS.ExtendedRegistration:
         Description: Description for feature itWORKS.ExtendedRegistration.
