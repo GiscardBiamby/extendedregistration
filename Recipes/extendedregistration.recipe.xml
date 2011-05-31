@@ -10,5 +10,5 @@
   </Recipe>
   <Module packageId="Orchard.Module.Contrib.Profile" />
   <Feature enable="Orchard.jQuery,Contrib.Profile" />
-  <Migration features="Contrib.Profile"/>
+  <Migration features="*"/>
 </Orchard>
