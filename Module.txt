@@ -1,13 +1,13 @@
 Name: Extended Registration
 AntiForgery: enabled
 Author: Santiago Burbano
-Website: http://orchardproject.net
-Version: 1.0.4
+Website: http://extendedregistration.codeplex.com/
+Version: 1.0.5
 OrchardVersion: 1.0
 Description: Description for the module
 Dependencies: Contrib.Profile, Orchard.jQuery
 Features:
     itWORKS.ExtendedRegistration:
-        Description: Description for feature itWORKS.ExtendedRegistration.
-		Category: Profile
+        Description: Displays any parts added to User Content Type in the Registration Page.
+		Category: Social
         Dependencies: Contrib.Profile, Orchard.jQuery
