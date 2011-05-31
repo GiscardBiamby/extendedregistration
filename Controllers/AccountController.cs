@@ -95,18 +95,17 @@ namespace itWORKS.ExtendedRegistration.Controllers
             }
             ViewData["PasswordLength"] = MinPasswordLength;
 
+            var shape = _orchardServices.New.Register();
+
             // validate user part, create a temp user part to validate input
             var userPart = _orchardServices.ContentManager.New("User");
             if (userPart != null)
             {
-                dynamic shape2 = _orchardServices.ContentManager.UpdateEditor(userPart, this);
+                shape.UserProfile = _orchardServices.ContentManager.UpdateEditor(userPart, this);
                 if (!ModelState.IsValid)
                 {
                     _orchardServices.TransactionManager.Cancel();
-                    shape2 = _orchardServices.New.Register();
-                    shape2.UserProfile = _contentManager.BuildEditor(userPart);
-
-                    return new ShapeResult(this, shape2);
+                    return new ShapeResult(this, shape);
                 }
             }
 
@@ -119,7 +118,7 @@ namespace itWORKS.ExtendedRegistration.Controllers
                 if (user != null)
                 {
                     // we know userpart data is ok, now we update the 'real' recently published userpart
-                    dynamic shape3 = _orchardServices.ContentManager.UpdateEditor(user.ContentItem, this);
+                    _orchardServices.ContentManager.UpdateEditor(user.ContentItem, this);
 
                     var userPart2 = user.As<UserPart>();
                     if (user.As<UserPart>().EmailStatus == UserStatus.Pending)
@@ -130,12 +129,12 @@ namespace itWORKS.ExtendedRegistration.Controllers
                         {
                             userEventHandler.SentChallengeEmail(user);
                         }
-                        return RedirectToAction("ChallengeEmailSent");
+                        return RedirectToAction("ChallengeEmailSent", "Account", new { area = "Orchard.Users" });
                     }
 
                     if (user.As<UserPart>().RegistrationStatus == UserStatus.Pending)
                     {
-                        return RedirectToAction("RegistrationPending");
+                        return RedirectToAction("RegistrationPending", "Account", new { area = "Orchard.Users" });
                     }
 
                     _authenticationService.SignIn(user, false /* createPersistentCookie */);
@@ -146,7 +145,7 @@ namespace itWORKS.ExtendedRegistration.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            var shape = _orchardServices.New.Register();
+            //var shape = _orchardServices.New.Register();
             return new ShapeResult(this, shape);
         }
 

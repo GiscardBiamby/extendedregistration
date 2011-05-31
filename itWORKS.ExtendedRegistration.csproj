@@ -60,6 +60,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Recipes\extendedregistration.recipe.xml" />
     <Content Include="Scripts\remove_publish_btn.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
